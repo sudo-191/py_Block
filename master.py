@@ -25,7 +25,7 @@ class gui():
         #packing widget in mainframe
         self.textBox.pack(padx=5,pady=5)
         self.entry.pack(padx=5,pady=5,side="left")
-        #list of all widgets. for plugin privilage purpose
+        #list of all widgets. for plugin privilege purpose
         self.widgets={"textBox":self.textBox,"entry":self.entry,"window":self.master}
         
         
@@ -43,10 +43,10 @@ class gui():
             if(plugin[-3:]==".py" or plugin[-3:]==".pyd"):
                 try:
                     plugin_load=__import__("%s"%plugin[:-3])
-                    privilages=self.privilage(plugin_load.privilage()) #getting privilage list from loaded plugin
-                    if privilages!=-1:
+                    privileges=self.privilege(plugin_load.privilege()) #getting privilege list from loaded plugin
+                    if privileges!=-1:
                         try:
-                            plugin_load.main(*privilages) #argument passing to main function of loaded plugin
+                            plugin_load.main(*privileges) #argument passing to main function of loaded plugin
                             self.textBoxInsert(texts=">>%s is loaded\n"%plugin,tag="green") #if valid
                         except Exception as e:
                             self.textBoxInsert(texts=">>%s.main() something wrong\n"%plugin,tag="red") #else
@@ -55,14 +55,14 @@ class gui():
                     else:
                         self.textBoxInsert(texts=">>%s has invalid priviliage\n"%plugin,tag="red") #-1 one
                 except Exception as e:
-                    self.textBoxInsert(texts=">>%s is not a valid plugin\n"%plugin,tag="red") #error in plugin or no main or privilage function
+                    self.textBoxInsert(texts=">>%s is not a valid plugin\n"%plugin,tag="red") #error in plugin or no main or privilege function
                     self.textBoxInsert(texts=">>ERROR: %s\n"%e,tag="red")
     
     #return widgets reference from widgets dictionary
-    def privilage(self,privilages):
+    def privilege(self,privileges):
         widgets=[] #widget reference list to pass in main function
-        if 0<len(privilages)<3:
-            for i in privilages:
+        if 0<len(privileges)<3:
+            for i in privileges:
                 widgets.append(self.widgets[i]) #retrieving value from the widget dictionary, which contain widgets.
             return widgets
         else:
