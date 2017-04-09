@@ -10,13 +10,13 @@ def reverse():
             output+=text[i]
         textbox.insert('end',"\n"+output)
 
-#without main and privilage function a plugin will be invalid
+#without main and privilege function a plugin will be invalid
 def main(textBox_widget, entry_widget):
     global textbox,entry
     textbox=textBox_widget
     entry=entry_widget
     entry.bind("<Return>",lambda x: reverse())
 
-#privilage list elements sequence== function arguments sequence
-def privilage():
+#privilege list elements sequence== function arguments sequence
+def privilege():
     return("textBox",'entry')
